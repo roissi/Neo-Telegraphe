@@ -1,5 +1,7 @@
-const App = () => {
-  return <h1>Hello, world!</h1>;
-};
+import Boutiques from '../components/Boutiques';
 
-export default App;
+export default function Home() {
+  return (
+      <Boutiques />
+  );
+}

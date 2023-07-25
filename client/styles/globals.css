@@ -1,0 +1,31 @@
+.my-global-layout {
+  /* insérez ici les styles globaux que vous souhaitez */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.card-body {
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-custom {
+  background-color: #088e99 !important;
+  border-color: #088e99 !important;
+}
+
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  color: black !important;
+}
+
+.nav-link:hover {
+  color: #088e99 !important;
+}
+
+.copyright {
+  font-family: 'Inter', sans-serif;
+  color: black;
+  padding: .5rem 1rem;
+}
