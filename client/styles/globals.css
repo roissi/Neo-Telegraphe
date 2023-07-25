@@ -15,6 +15,18 @@ body {
   border-color: #088e99 !important;
 }
 
+.card-img-top {
+  transition: transform 0.5s;
+}
+
+.card-img-top:hover {
+  transform: scale(1.05);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .nav-link {
   font-family: 'Inter', sans-serif;
   color: black !important;

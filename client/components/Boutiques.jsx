@@ -6,8 +6,12 @@ import supabase from '../lib/supabase';
 // Composant représentant une seule boutique
 function Boutique({ boutique }) {
   return (
-    <div className="card mb-4 shadow-sm" style={{width: "18rem"}}>
-      <img src={boutique.imageUrl} className="card-img-top" alt={boutique.name} />
+    <div className="card mb-4 shadow-sm m-2 overflow-hidden">
+      <img 
+        src={boutique.imageUrl} 
+        className="card-img-top" 
+        alt={boutique.name} 
+      />
       <div className="card-body">
       <h5 className="card-title" style={{fontWeight: 'bold'}}>{boutique.name}</h5>
         <p className="card-text">{boutique.address}</p>
@@ -47,9 +51,9 @@ export default function Boutiques() {
   }, []);
 
   return (
-    <div className="row">
+    <div className="row mx-0">
       {boutiques.map((boutique) => (
-        <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12" key={boutique.id}>
+        <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 px-1 mb-4" key={boutique.id}>
           <Boutique boutique={boutique} />
         </div>
       ))}
