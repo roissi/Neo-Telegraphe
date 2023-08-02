@@ -2,20 +2,29 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import supabase from '../lib/supabase';
+import { CategoryIcon } from './LucideIcons';
 
 // Composant représentant une seule boutique
 function Boutique({ boutique }) {
   return (
     <div className="card mb-4 shadow-sm m-2 overflow-hidden">
-      <img 
-        src={boutique.imageUrl} 
-        className="card-img-top" 
-        alt={boutique.name} 
-      />
+      <Link href={`/boutique/${boutique.id}`} passHref>
+        <img 
+            src={boutique.imageUrl} 
+            className="card-img-top" 
+            alt={boutique.name} 
+          />
+      </Link>
       <div className="card-body">
       <h5 className="card-title" style={{fontWeight: 'bold'}}>{boutique.name}</h5>
         <p className="card-text">{boutique.address}</p>
-        <p className="card-text">{boutique.category}</p>
+        <p>
+        {boutique.category && (
+        <span className={`badge badge-${boutique.category.toLowerCase()}`}>
+          <CategoryIcon category={boutique.category} />
+        </span>
+        )}
+        </p>
         <p className="card-text">
           <span className="text-warning">
             {"\u2605".repeat(Math.round(boutique.reputation))}
@@ -36,9 +45,6 @@ export default function Boutiques() {
   useEffect(() => {
     const fetchBoutiques = async () => {
       const { data, error } = await supabase.from('Shop').select('*');
-
-      console.log("Data: ", data); // Affiche les données récupérées
-      console.log("Error: ", error); // Affiche l'erreur si elle existe
 
       if (error) {
         console.error('Error fetching boutiques:', error);

@@ -6,13 +6,30 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.card-body {
-  font-family: 'Inter', sans-serif;
+.user-controls {
+  position: fixed;
+  top: 20px; /* adjust as needed */
+  right: 20px; /* adjust as needed */
 }
 
 .btn-custom {
-  background-color: #088e99 !important;
-  border-color: #088e99 !important;
+  background-color: white;
+  color: #088e99;
+  border: 2px solid #088e99;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover,
+.btn-custom.active:hover {
+  background-color: #088e99;
+  border-color: #088e99;
+  color: white;
+}
+
+.btn-custom.active {
+  background-color: white;
+  border-color: #088e99;
+  color: #088e99;
 }
 
 .card-img-top {
@@ -25,6 +42,41 @@ body {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.badge-alimentation {
+  background-color: #ec6e88;
+  color: white;
+}
+
+.badge-pharmacie {
+  background-color: #34e6ab;
+  color: white;
+}
+
+.badge-restaurant {
+  background-color: #ec6e88;
+  color: white;
+}
+
+.badge-décoration {
+  background-color: #ec6e88;
+  color: white;
+}
+
+.badge-monument {
+  background-color: #716af4;
+  color: white;
+}
+
+.badge-boulangerie {
+  background-color: #ec6e88;
+  color: white;
+}
+
+.badge-poste {
+  background-color: #34e6ab;
+  color: white;
 }
 
 .nav-link {
