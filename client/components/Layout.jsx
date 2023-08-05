@@ -21,7 +21,7 @@ function Layout({ children }) {
     );
 
     return () => {
-      authListener.unsubscribe();
+      authListener();
     };
   }, []);
 
@@ -37,11 +37,11 @@ function Layout({ children }) {
       <header className="d-flex justify-content-center align-items-center">
         <div style={{ position: 'absolute', top: 20, right: 30 }}>
         {session ? (
-  <button onClick={handleSignOut}>Déconnexion</button>
+  <button className="btn btn-x" onClick={handleSignOut}>Déconnexion</button>
 ) : (
   <>
-    <button onClick={() => setSignupOpen(true)}>Inscription</button> / 
-    <button onClick={() => setLoginOpen(true)}>Connexion</button>
+    <button className="btn btn-x me-3" onClick={() => setSignupOpen(true)}>Inscription</button> 
+    <button className="btn btn-x" onClick={() => setLoginOpen(true)}>Connexion</button>
     <SignupModal isOpen={signupOpen} onRequestClose={() => setSignupOpen(false)} />
     <LoginModal isOpen={loginOpen} onRequestClose={() => setLoginOpen(false)} />
   </>

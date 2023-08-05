@@ -2,7 +2,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/globals.css'
 import Layout from '../components/Layout';
 import Modal from 'react-modal';
-import { AuthProvider } from '../lib/AuthContext'; // Assurez-vous que ce chemin d'importation est correct
+import { AuthProvider } from '../lib/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Modal.setAppElement('#__next');
 
@@ -11,6 +13,7 @@ function MyApp({ Component, pageProps }) {
     <AuthProvider>
       <Layout>
         <Component {...pageProps} />
+        <ToastContainer />
       </Layout>
     </AuthProvider>
   );

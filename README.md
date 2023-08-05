@@ -1,2 +1,2 @@
 # Neo-Telegraphe
-Télégraphe, Paris 20th, in 2040, shop by shop...
+Télégraphe, Paris 20th, shop by shop... WIP

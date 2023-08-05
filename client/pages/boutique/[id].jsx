@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import supabase from '../../lib/supabase';
 import { useRouter } from 'next/router'
 import { CategoryIcon } from '../../components/LucideIcons';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { AuthContext } from '../../lib/AuthContext';
+import ReviewModal from '../../components/ReviewModal';
 
 const containerStyle = {
   width: '100%',
   height: '400px'
 };
 
-function Boutique() {
+export default function Boutique() {
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const { user } = useContext(AuthContext);
   const [boutique, setBoutique] = useState({});
-  const [showReviews, setShowReviews] = useState(false); // New state
-  const [reviews, setReviews] = useState([]); // State for reviews
+  const [showReviews, setShowReviews] = useState(false);
+  const [reviews, setReviews] = useState([]);
   const router = useRouter();
   const { id } = router.query;
   const [error, setError] = useState(null);
@@ -27,7 +31,7 @@ function Boutique() {
     
       if (error) {
         console.log("Error: ", error);
-        setError(error.message); // Set the error state
+        setError(error.message);
       }
       else setBoutique(data);
     };
@@ -49,6 +53,11 @@ function Boutique() {
           setError(error.message); // Set the error state
         }
         else {
+          // Calculate the average rating
+          const totalRating = data.reduce((acc, curr) => acc + curr.rating, 0);
+          const avgRating = totalRating / data.length;
+          setBoutique(prevBoutique => ({...prevBoutique, reputation: avgRating.toFixed(1)}));
+  
           setReviews(data);
           setError(null); // Clear the error state if successful
         }
@@ -83,18 +92,35 @@ function Boutique() {
 
       <div className="d-flex justify-content-center flex-column align-items-center mb-4">
         <p className="mr-5">
+          {boutique.reputation ? (
+          <>
           <span className="text-warning">
             {"\u2605".repeat(Math.round(boutique.reputation))}
           </span>
-          {` (${boutique.reputation})`}
+            {` (${boutique.reputation})`}
+          </>
+          ) : (
+          "Pas encore d'avis"
+          )}
         </p>
+
+      <div className="d-flex justify-content-between">
         <button
-          className={`btn btn-custom ${showReviews ? 'active' : ''}`} 
+          className={`btn btn-custom me-3 ${showReviews ? 'active' : ''}`} 
           onClick={() => setShowReviews(!showReviews)}
         >
           {showReviews ? 'Voir la description' : 'Voir tous les avis'}
         </button>
+
+        <button className="btn btn-custom" onClick={() => {
+          if (user) {
+          setReviewOpen(true)
+          } else {
+          alert("Vous devez vous connecter pour rédiger un avis");
+          }
+          }}>Rédiger un avis</button>
       </div>
+    </div>
 
       <div className="px-3 mb-5">
         {showReviews ? (
@@ -136,8 +162,12 @@ function Boutique() {
           </GoogleMap>
         </LoadScript>
       </div>
+
+      <ReviewModal
+        isOpen={reviewOpen}
+        onRequestClose={() => setReviewOpen(false)}
+        shopId={id}
+      />
     </div>
   );
 }
-
-export default Boutique;

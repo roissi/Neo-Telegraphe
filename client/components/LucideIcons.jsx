@@ -1,6 +1,5 @@
 import { Croissant, Utensils, Pill, Mail, ShoppingCart, Castle, SprayCan } from 'lucide-react';
 
-// Cette fonction renvoie l'icône correspondante en fonction de la catégorie
 export function CategoryIcon({ category }) {
   switch(category.toLowerCase()) {
     case 'boulangerie':

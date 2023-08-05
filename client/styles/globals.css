@@ -1,5 +1,5 @@
 .my-global-layout {
-  /* insérez ici les styles globaux que vous souhaitez */
+  /* global styles here if I nead */
 }
 
 body {
@@ -8,8 +8,8 @@ body {
 
 .user-controls {
   position: fixed;
-  top: 20px; /* adjust as needed */
-  right: 20px; /* adjust as needed */
+  top: 20px;
+  right: 20px;
 }
 
 .btn-custom {
@@ -30,6 +30,18 @@ body {
   background-color: white;
   border-color: #088e99;
   color: #088e99;
+}
+
+.btn-x {
+  background-color: #088e99;
+  border-color: #088e99;
+  color: white;
+}
+
+.btn-x:hover {
+  background-color: #067582;
+  border-color: #067582;
+  color: white;
 }
 
 .card-img-top {
@@ -92,4 +104,12 @@ body {
   font-family: 'Inter', sans-serif;
   color: black;
   padding: .5rem 1rem;
+}
+
+.Toastify__toast {
+  padding: 10px !important;
+  min-height: 50px !important;
+  font-size: 1.5em !important;
+  color: white !important;
+  background-color: #088e99 !important;
 }
