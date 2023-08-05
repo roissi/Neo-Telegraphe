@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 import supabase from '../lib/supabase';
 import { AuthContext } from '../lib/AuthContext';
@@ -9,11 +9,10 @@ export default function SignupModal({ isOpen, onRequestClose }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [message, setMessage] = useState('');
-
-  const nameRef = useRef(name);
 
   const { user, setUser } = useContext(AuthContext);
+
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,51 +27,55 @@ export default function SignupModal({ isOpen, onRequestClose }) {
       return;
     }
 
-    setMessage("Un e-mail de confirmation a été envoyé à votre adresse. Veuillez cliquer sur le lien dans l'e-mail pour vérifier votre compte.");
-  
-    resetForm();
+    // Store the name in local storage
+    localStorage.setItem('signupName', name);
 
     toast("Un e-mail de confirmation a été envoyé à votre adresse. Veuillez cliquer sur le lien dans l'e-mail pour vérifier votre compte.", {
       autoClose: 10000,  // 10000 ms = 10 sec
     });
-    resetForm();
-  };
-
-  const resetForm = () => {
     setEmail('');
     setPassword('');
     setName('');
-    onRequestClose();
-  }
-
-  useEffect(() => {
-    nameRef.current = name;
-  }, [name]);
+  };
 
   useEffect(() => {
     const handleAuthStateChange = async (event, session) => {
-      if (event === 'SIGNED_IN') {
+      if (event === 'SIGNED_IN' && session.user) {
         const user = session.user;
-
+  
         const { data: existingProfiles } = await supabase
           .from('user_profiles')
           .select()
           .eq('user_id', user.id)
           .single();
-
+  
         if (!existingProfiles) {
-          const { data: userProfile, error: insertError } = await supabase
-            .from('user_profiles')
-            .insert({ user_id: user.id, name: nameRef.current });
-
-          if (insertError) {
-            console.log('Error inserting user profile:', insertError);
+          // Retrieve the name from local storage
+          const signupName = localStorage.getItem('signupName');
+  
+          if (user) {
+            const { data: userProfile, error: insertError } = await supabase
+              .from('user_profiles')
+              .insert({ user_id: user.id, name: signupName });
+  
+            if (insertError) {
+              console.error(insertError);
+            }
+  
+            // Remove the name from local storage
+            localStorage.removeItem('signupName');
+          } else {
+            // handle error case
+            console.error('User is not defined');
           }
         }
       }
     }
-
+  
     supabase.auth.onAuthStateChange(handleAuthStateChange);
+    return () => {
+      supabase.auth.onAuthStateChange((event, session) => {});
+    };
   }, []);
 
   if (user) {
