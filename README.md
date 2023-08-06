@@ -24,7 +24,7 @@ The application is developed using the `Next.js` framework, with an integration 
 ## Ongoing Development
 This project is currently a work in progress. Updates and additional features will be added in the near future.
 
-
+-------------------------------------
 
 **/FR/**
 
