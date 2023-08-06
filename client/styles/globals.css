@@ -44,6 +44,10 @@ body {
   color: white;
 }
 
+.rating-star {
+  color: #f08f1f;
+}
+
 .card-img-top {
   transition: transform 0.5s;
 }
@@ -57,37 +61,37 @@ body {
 }
 
 .badge-alimentation {
-  background-color: #f08f1f;
+  background-color: #088e99;
   color: white;
 }
 
 .badge-pharmacie {
-  background-color: #f08f1f;
+  background-color: #088e99;
   color: white;
 }
 
 .badge-restaurant {
-  background-color: #f08f1f;
+  background-color: #088e99;
   color: white;
 }
 
 .badge-décoration {
-  background-color: #f08f1f;
+  background-color: #088e99;
   color: white;
 }
 
 .badge-monument {
-  background-color: #c95b73;
+  background-color: #088e99;
   color: white;
 }
 
 .badge-boulangerie {
-  background-color: #f08f1f;
+  background-color: #088e99;
   color: white;
 }
 
 .badge-poste {
-  background-color: #c95b73;
+  background-color: #088e99;
   color: white;
 }
 

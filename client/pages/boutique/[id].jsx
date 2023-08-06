@@ -94,7 +94,7 @@ export default function Boutique() {
         <p className="mr-5">
           {boutique.reputation ? (
           <>
-          <span className="text-warning">
+          <span className="rating-star">
             {"\u2605".repeat(Math.round(boutique.reputation))}
           </span>
             {` (${boutique.reputation})`}
@@ -129,7 +129,7 @@ export default function Boutique() {
             <div key={review.id}>
               <h5 className="review-user">{review.user_profiles ? review.user_profiles.name : "Utilisateur inconnu"}</h5>
                 <p className="card-text">
-                <span className="text-warning">
+                <span className="rating-star">
                   {"\u2605".repeat(Math.round(review.rating))}
                 </span>
                   {` (${review.rating})`}

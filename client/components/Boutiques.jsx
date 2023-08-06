@@ -27,7 +27,7 @@ function Boutique({ boutique }) {
         <p className="card-text">
           {boutique.reputation ? (
             <>
-              <span className="text-warning">
+              <span className="rating-star">
                 {"\u2605".repeat(Math.round(boutique.reputation))}
               </span>
               {` (${boutique.reputation})`}
