@@ -136,3 +136,39 @@ margin-bottom: 1rem;
 .email:hover {
   color: #088e99 !important;
 }
+
+/* Mobile first < 768px */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo-container {
+  text-align: center;
+  flex: 1;
+  order: 1;
+}
+
+.btn-container {
+  order: 2;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Desktop > 768px */
+@media (min-width: 768px) {
+  .logo-container {
+    flex-grow: 1;
+  }
+  .btn-container {
+    width: auto;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    text-align: right;
+    margin-top: 0;
+  }
+}

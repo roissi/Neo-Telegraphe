@@ -34,28 +34,31 @@ function Layout({ children }) {
 
   return (
     <div className="container">
-      <header className="d-flex justify-content-center align-items-center">
-        <div style={{ position: 'absolute', top: 20, right: 30 }}>
-        {session ? (
-  <button className="btn btn-x" onClick={handleSignOut}>Déconnexion</button>
-) : (
-  <>
-    <button className="btn btn-x me-3" onClick={() => setSignupOpen(true)}>Inscription</button> 
-    <button className="btn btn-x" onClick={() => setLoginOpen(true)}>Connexion</button>
-    <SignupModal isOpen={signupOpen} onRequestClose={() => setSignupOpen(false)} />
-    <LoginModal isOpen={loginOpen} onRequestClose={() => setLoginOpen(false)} />
-  </>
-)}
-        </div>
 
-        {router.pathname === '/' ? (
+  <header className="header-container">
+    <div className="logo-container">
+      {router.pathname === '/' ? (
+        <Image src="/img/logoNT_TEST.png" alt="Logo" width={400} height={400} />
+      ) : (
+        <Link href="/" passHref>
           <Image src="/img/logoNT_TEST.png" alt="Logo" width={400} height={400} />
-        ) : (
-          <Link href="/" passHref>
-            <Image src="/img/logoNT_TEST.png" alt="Logo" width={400} height={400} />
-          </Link>
-        )}
-      </header>
+        </Link>
+      )}
+    </div>
+  </header>
+
+  <div className="btn-container">
+    {session ? (
+      <button className="btn btn-x" onClick={handleSignOut}>Déconnexion</button>
+    ) : (
+      <>
+        <button className="btn btn-x me-3" onClick={() => setSignupOpen(true)}>Inscription</button>
+        <button className="btn btn-x" onClick={() => setLoginOpen(true)}>Connexion</button>
+        <SignupModal isOpen={signupOpen} onRequestClose={() => setSignupOpen(false)} />
+        <LoginModal isOpen={loginOpen} onRequestClose={() => setLoginOpen(false)} />
+      </>
+    )}
+  </div>
 
       <main className="text-center mt-5 mb-5">{children}</main>
 
