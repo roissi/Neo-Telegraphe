@@ -62,16 +62,16 @@ function Layout({ children }) {
       <footer className="text-center mb-3">
         <ul className="nav justify-content-center">
           <li className="nav-item">
-            <a className="nav-link active" href="https://portfolio-roissi.vercel.app/">À propos</a>
+            <a className="nav-link" href="https://portfolio-roissi.vercel.app/">À propos</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Contacts</a>
+            <a className="nav-link" href="https://www.linkedin.com/in/cyril-de-graeve/">Contacts</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Mentions Légales</a>
+            <a className="nav-link" href="/mentions-legales">Mentions Légales</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Politique de confidentialité</a>
+            <a className="nav-link" href="/politique-de-confidentialite">Politique de confidentialité</a>
           </li>
           <li className="nav-item">
             <p className="copyright">© roissi / 2023</p>

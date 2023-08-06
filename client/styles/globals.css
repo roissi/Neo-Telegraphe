@@ -117,3 +117,22 @@ body {
   color: white !important;
   background-color: #088e99 !important;
 }
+
+.mentions-title {
+color: #088e99;
+margin-bottom: 4rem;
+}
+
+h2 {
+margin-top: 1.5rem;
+margin-bottom: 1rem;
+}
+
+.email {
+  font-family: 'Inter', sans-serif;
+  color: black !important;
+}
+
+.email:hover {
+  color: #088e99 !important;
+}
