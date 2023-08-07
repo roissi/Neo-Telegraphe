@@ -158,11 +158,20 @@ margin-bottom: 1rem;
   margin-top: 20px;
 }
 
+/* Pour les écrans jusqu'à 768px */
+@media (max-width: 768px) {
+  .logo-container img {
+    width: 300px;
+    height: 300px;
+  }
+}
+
 /* Desktop > 768px */
 @media (min-width: 768px) {
   .logo-container {
     flex-grow: 1;
   }
+
   .btn-container {
     width: auto;
     position: absolute;
