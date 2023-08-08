@@ -14,6 +14,8 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Inter&display=swap" 
             rel="stylesheet" 
           />
+          {/* Balise meta pour l'image Open Graph */}
+          <meta property="og:image" content="URL_DE_VOTRE_IMAGE" />
         </Head>
         <body>
           <Main />
@@ -24,4 +26,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument
+export default MyDocument;
