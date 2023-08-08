@@ -15,7 +15,7 @@ class MyDocument extends Document {
             rel="stylesheet" 
           />
           {/* Balise meta pour l'image Open Graph */}
-          <meta property="og:image" content="https://neo-telegraphe.vercel.app/img/images/og_img.png" />
+          <meta property="og:image" content="https://neo-telegraphe.vercel.app/img/og_img.png" />
         </Head>
         <body>
           <Main />
