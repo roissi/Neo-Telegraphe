@@ -1,4 +1,10 @@
-import { Croissant, Utensils, Pill, Mail, ShoppingCart, Castle, SprayCan } from 'lucide-react';
+import { Home, Croissant, Utensils, Pill, Mail, ShoppingCart, Castle, SprayCan } from 'lucide-react';
+
+export function HomeIcon(props) {
+  return (
+    <Home color="white" {...props} />
+      );
+}
 
 export function CategoryIcon({ category }) {
   switch(category.toLowerCase()) {

@@ -70,7 +70,7 @@ export default function Boutique() {
   return (
     <div>
       <div className="d-flex align-items-center justify-content-center mb-1 gap-4">
-        <h1 className="mr-3">{boutique.name}</h1>
+        <h1 className="black-text mr-3">{boutique.name}</h1>
         {boutique.category && (
           <span className={`badge badge-${boutique.category.toLowerCase()}`}>
             <CategoryIcon category={boutique.category} />
@@ -85,8 +85,8 @@ export default function Boutique() {
         <img 
           src={boutique.imageUrl} 
           alt={boutique.name} 
-          className="img-fluid"
-          style={{marginTop: "20px", marginBottom: "20px"}}
+          className="img-fluid fade-in-image"
+          style={{marginTop: "20px", marginBottom: "20px", borderRadius: "15px"}}
         />
       </div>
 
@@ -127,21 +127,21 @@ export default function Boutique() {
           reviews.length > 0 ? (
           reviews.map(review => (
             <div key={review.id}>
-              <h5 className="review-user">{review.user_profiles ? review.user_profiles.name : "Utilisateur inconnu"}</h5>
-                <p className="card-text">
+              <h5 className="black-text review-user">{review.user_profiles ? review.user_profiles.name : "Utilisateur inconnu"}</h5>
+              <p className="black-text card-text">
                 <span className="rating-star">
                   {"\u2605".repeat(Math.round(review.rating))}
                 </span>
                   {` (${review.rating})`}
                 </p>
-                <p>{review.content}</p>
+                <p className="black-text">{review.content}</p>
             </div>
           ))
         ) : (
           <p>Cette boutique ou sa prestation n'a pas encore été commentée par les utilisateurs...</p>
         )
       ) : (
-        <p>{boutique.description}</p>
+        <p className="black-text">{boutique.description}</p>
       )}
       </div>
 
