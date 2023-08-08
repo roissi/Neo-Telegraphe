@@ -5,11 +5,13 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import SignupModal from './SignupModal';
 import LoginModal from './LoginModal';
+import { HomeIcon } from './LucideIcons';
 
 function Layout({ children }) {
   const [session, setSession] = useState(null);
   const [signupOpen, setSignupOpen] = useState(false);
   const router = useRouter();
+  const isOnHomePage = router.pathname === '/';
 
   useEffect(() => {
     setSession(supabase.auth.session);
@@ -48,6 +50,18 @@ function Layout({ children }) {
   </header>
 
   <div className="btn-container">
+  {!isOnHomePage && (
+    <Link href="/" passHref>
+      <div className="icon-container">
+        <HomeIcon 
+          size={28} 
+          strokeWidth={2.25} 
+          color="white" 
+        />
+      </div>
+    </Link>
+  )}
+
     {session ? (
       <button className="btn btn-x" onClick={handleSignOut}>Déconnexion</button>
     ) : (
