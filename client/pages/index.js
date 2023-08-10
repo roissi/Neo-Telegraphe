@@ -5,55 +5,46 @@ import { motion } from 'framer-motion';
 
 function Landing() {
   const [isTypingDone, setIsTypingDone] = useState(false);
-  const text1 = "Le point culminant de Paris, d’une altitude de 128,50 mètres, se situe au 40 rue de Télégraphe, juste à côté du cimetière de Belleville. Aujourd’hui, les hauts immeubles qui l’entourent empêchent toute échappée vers de lointains horizons."
-  const text2 = "Du moins, c'est ce qu'on dit..."
-  const chars1 = text1.split('');
-  const chars2 = text2.split('');
-  const animationDelay = 0.05; // Durée pour chaque lettre
-  const [windowWidth, setWindowWidth] = useState(undefined);
-  const EXTRA_DELAY = 2; // Durée de la pause en secondes
+  const [windowWidth, setWindowWidth] = useState(0);
 
+  const text1 = "Le point culminant de Paris, d’une altitude de 128,50 mètres, se situe au 40 rue de Télégraphe, juste à côté du cimetière de Belleville. Aujourd’hui, les hauts immeubles qui l’entourent empêchent toute échappée vers de lointains horizons.";
+  const text2 = "Du moins, c'est ce qu'on dit...";
+  const animationDelay = 0.05;
+  const EXTRA_DELAY = 2;
+  
+  // UseEffect for handling window resize
   useEffect(() => {
-    // Fonction pour mettre à jour la largeur de la fenêtre
     const handleResize = () => {
         setWindowWidth(window.innerWidth);
     };
     
-    // Écoutez l'événement de redimensionnement
     window.addEventListener('resize', handleResize);
-    
-    // Définissez la largeur initiale
     handleResize();
 
-    // Nettoyez l'écouteur d'événement lorsque le composant est démonté
     return () => window.removeEventListener('resize', handleResize);
-}, []);
+  }, []);
 
+  // UseEffect for animation timing
+  useEffect(() => {
+    const totalTime = (text1.length + text2.length) * animationDelay * 1000 + (EXTRA_DELAY + 3) * 1000;
 
-useEffect(() => {
-  const delayAfterChars1 = 2;  // délai après chars1
-  const delayAfterChars2 = 1;  // délai après chars2
-  const totalTime = chars1.length * animationDelay * 1000 + delayAfterChars1 * 1000 + chars2.length * animationDelay * 1000 + delayAfterChars2 * 1000;
+    const timer = setTimeout(() => {
+      setIsTypingDone(true);
+    }, totalTime);
 
-  const timer = setTimeout(() => {
-    setIsTypingDone(true);
-  }, totalTime);
+    return () => clearTimeout(timer);
+  }, []);
 
-    return () => clearTimeout(timer); // Nettoyez le timer pour éviter des bugs potentiels
-  }, [chars1, chars2]);
+  const fontSize = isTypingDone 
+    ? 'initial' 
+    : windowWidth <= 768 ? '1.5rem' : '3rem';
 
   return (
     <div className={styles.landingPage}>
       <div className={styles.container}>
         <div className={styles.leftColumn}>
-          <div className={styles.landingText2}
-          style={{ 
-            fontSize: isTypingDone 
-                ? 'initial' 
-                : windowWidth <= 768 ? '1.5rem' : '3rem' // Si la largeur est inférieure ou égale à 768px, alors c'est une taille pour mobile
-              }}
-            >
-            {chars1.map((char, index) => (
+          <div className={styles.landingText2} style={{ fontSize }}>
+            {!isTypingDone && text1.split('').map((char, index) => (
               <motion.span
                 key={index}
                 initial={{ opacity: 0 }}
@@ -61,29 +52,29 @@ useEffect(() => {
                 transition={{ 
                   delay: index * animationDelay,
                   duration: animationDelay 
-              }}
-            >
-              {char}
-            </motion.span>
-          ))}
-          <br />
-          {!isTypingDone && chars2.map((char, index) => (
-            <motion.span
-                key={index + chars1.length}  // Assurez-vous d'avoir une clé unique
+                }}
+              >
+                {char}
+              </motion.span>
+            ))}
+            <br />
+            {!isTypingDone && text2.split('').map((char, index) => (
+              <motion.span
+                key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ 
-                delay: (index + chars1.length) * animationDelay + EXTRA_DELAY,
-                duration: animationDelay 
-              }}
-            >
-              {char}
-            </motion.span>
+                  delay: (index + text1.length) * animationDelay + EXTRA_DELAY,
+                  duration: animationDelay 
+                }}
+              >
+                {char}
+              </motion.span>
             ))}
           </div>
           
           {isTypingDone && (
-            <>
+            <div>
               {/* Image pour l'affichage mobile */}
               <motion.div
                 className={styles.landingImageContainerMobile}
@@ -103,6 +94,20 @@ useEffect(() => {
                 Bienvenue dans l'application Télégraphe
               </motion.h2>
 
+              <motion.div
+                className={styles.landingButtonContainer}
+                initial={{ opacity: 0, y: -1000, scale: 1.2 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                transition={{ 
+                  y: { type: "spring", stiffness: 300, damping: 10 },
+                  scale: { delay: 0.3, duration: 0.6 } 
+                }}
+                exit={{ opacity: 0 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                <a href="/home" className="btn btn-x">Go, explorez l'application !</a>
+              </motion.div>
+
               <motion.p
                 className={styles.landingText}
                 initial={{ opacity: 0, y: 30 }}
@@ -110,33 +115,23 @@ useEffect(() => {
                 transition={{ delay: 0.6, duration: 0.6 }}
               >
             Cette application est une plateforme dédiée à la découverte des boutiques du quartier Télégraphe, situé dans le 20<sup>ème</sup> arrondissement de Paris. Elle a été conçue pour aider les résidents et les visiteurs à trouver facilement des boutiques locales et savoir précisément ce qu'elles offrent. Le visiteur a notamment la possibilité de donner son avis sur chacune des boutiques, et leurs prestations, en rejoignant la communauté des membres inscrits (parisiens, habitants du quartier, touristes, robots, extra-terrestres, etc.).
-              </motion.p>
-
-              <motion.div
-                className={styles.landingButtonContainer}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: EXTRA_DELAY + 0.2, duration: 0.6 }}
-              >
-                <a href="/home" className="btn btn-x">Go, explorez l'application !</a>
-              </motion.div>
-            </>
+            </motion.p>
+            </div>
           )}
-        </div> {/* fin du .leftColumn */}
+        </div>
 
         {isTypingDone && (
-              <motion.div
-                className={styles.landingImageContainerDesktop}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.6 }}
-              >
+          <motion.div
+            className={styles.landingImageContainerDesktop}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
+          >
             <Image src="/img/chato2.jpg" alt="Télégraphe" width={320} height={260} layout="responsive" />
           </motion.div>
         )}
-
-      </div> {/* fin du .container */}
-    </div> // fin du .landingPage
+      </div>
+    </div>
   );
 }
 
