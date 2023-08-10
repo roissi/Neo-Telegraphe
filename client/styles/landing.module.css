@@ -1,0 +1,96 @@
+/* Conteneur général */
+.landingPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Conteneur interne avec colonnes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+/* Colonne gauche (contenant titre, texte et bouton) */
+.leftColumn {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Titre */
+.landingTitle {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+/* Texte de présentation */
+.landingText {
+  margin-bottom: 20px;
+}
+
+.landingText2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* Conteneur du bouton */
+.landingButtonContainer {
+  margin-bottom: 20px;
+}
+
+.landingImageContainerMobile img {
+  width: 100%;
+  max-width: 320px;
+}
+
+/* Cacher l'image de bureau par défaut sur mobile */
+.landingImageContainerDesktop {
+  display: none;
+}
+
+/* Afficher uniquement l'image mobile par défaut */
+.landingImageContainerMobile {
+  display: block;
+}
+
+/* Pour les écrans plus grands que 768px */
+@media (min-width: 768px) {
+  .container {
+      flex-direction: row;
+  }
+
+  .leftColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    margin-right: 50px;
+    text-align: left;
+  }
+
+  .landingImageContainerDesktop img {
+    max-width: 700px;
+  }
+
+  .landingTitle {
+    font-size: 50px;
+    margin-bottom: 30px;
+  }
+
+  /* Cacher l'image mobile sur desktop */
+  .landingImageContainerMobile {
+    display: none;
+  }
+  
+  /* Afficher l'image de bureau sur desktop */
+  .landingImageContainerDesktop {
+    display: block;
+  }
+}

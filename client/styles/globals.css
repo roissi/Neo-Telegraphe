@@ -3,14 +3,11 @@
 }
 
 body {
+  min-height: 100vh;
   font-family: 'Inter', sans-serif;
   background: linear-gradient(to top right, #cdf3f7, #ffffff);
-}
-
-.user-controls {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .btn-custom {
@@ -153,16 +150,6 @@ body {
   background-color: #088e99 !important;
 }
 
-.mentions-title {
-color: #088e99;
-margin-bottom: 4rem;
-}
-
-h2 {
-margin-top: 1.5rem;
-margin-bottom: 1rem;
-}
-
 .email {
   font-family: 'Inter', sans-serif;
   color: black !important;
@@ -172,51 +159,60 @@ margin-bottom: 1rem;
   color: #088e99 !important;
 }
 
-/* Mobile first < 768px */
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.logo-container {
-  text-align: center;
-  flex: 1;
-  order: 1;
-  margin-bottom: 30px;
-}
-
-.btn-container {
-  display: flex;
-  align-items: center; /* Pour centrer verticalement */
-  justify-content: center; /* Pour centrer horizontalement */
-  flex-wrap: wrap;
-}
-
 /* Pour les écrans jusqu'à 768px */
 @media (max-width: 768px) {
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .logo-container {
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    order: 1;
+    margin-bottom: 30px;
+  }
+
   .logo-container img {
     width: 300px;
     height: 300px;
+    margin: 0 auto;
+  }
+
+  .btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
 /* Desktop > 768px */
 @media (min-width: 768px) {
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
   .logo-container {
     flex-grow: 1;
+    margin-bottom: 0;
+    text-align: center;
   }
 
   .btn-container {
     position: absolute;
     top: 20px;
-    right: 30px;
-    justify-content: flex-end; /* Pour pousser les éléments à la droite */
-    margin-top: 0;
-  }
-
-  .logo-container {
-    margin-bottom: 0; /* Réinitialisation de la marge pour les écrans plus larges */
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
