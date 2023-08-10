@@ -58,6 +58,7 @@
 /* Afficher uniquement l'image mobile par défaut */
 .landingImageContainerMobile {
   display: block;
+  margin-bottom: 20px
 }
 
 /* Pour les écrans plus grands que 768px */
