@@ -9,12 +9,21 @@ import 'react-toastify/dist/ReactToastify.css';
 Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }) {
+  const useLayout = Component.useLayout ?? true;
+
   return (
     <AuthProvider>
-      <Layout>
-        <Component {...pageProps} />
-        <ToastContainer />
-      </Layout>
+      {useLayout ? (
+        <Layout>
+          <Component {...pageProps} />
+          <ToastContainer />
+        </Layout>
+      ) : (
+        <>
+          <Component {...pageProps} />
+          <ToastContainer />
+        </>
+      )}
     </AuthProvider>
   );
 }

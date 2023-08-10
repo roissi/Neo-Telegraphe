@@ -23,7 +23,9 @@ function Layout({ children }) {
     );
 
     return () => {
-      authListener();
+      if (authListener) {
+        authListener();
+      }
     };
   }, []);
 
