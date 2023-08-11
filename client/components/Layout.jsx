@@ -31,7 +31,7 @@ function Layout({ children }) {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    router.push('/');
+    router.push('/home');
   };
 
   const [loginOpen, setLoginOpen] = useState(false);
