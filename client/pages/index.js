@@ -6,11 +6,28 @@ import { motion } from 'framer-motion';
 function Landing() {
   const [isTypingDone, setIsTypingDone] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
+  const [backgroundState, setBackgroundState] = useState('initial');
 
   const text1 = "Le point culminant de Paris, d’une altitude de 128,50 mètres, se situe au 40 rue du Télégraphe, juste à côté du cimetière de Belleville. Aujourd’hui, les hauts immeubles qui l’entourent empêchent toute échappée vers de lointains horizons.";
   const text2 = "Du moins, c'est ce qu'on dit...";
   const animationDelay = 0.05;
   const EXTRA_DELAY = 2;
+
+  const landingPageVariants = {
+    initial: {
+      background: "linear-gradient(to top right, #088e99, #ffffff)"
+    },
+    afterTyping: {
+      background: "linear-gradient(to top right, #088e99, #ffffff)"
+    },
+    animate: {
+      background: "linear-gradient(to top right, #cdf3f7, #ffffff)",
+      transition: {
+        delay: 3,  // 3 second delay before starting the background transition
+        duration: 1  // Transition duration of 1 second, but you can adjust as needed
+      }
+    }
+  };
   
   // UseEffect for handling window resize
   useEffect(() => {
@@ -28,19 +45,32 @@ function Landing() {
   useEffect(() => {
     const totalTime = (text1.length + text2.length) * animationDelay * 1000 + (EXTRA_DELAY + 3) * 1000;
 
-    const timer = setTimeout(() => {
-      setIsTypingDone(true);
+    const typingTimer = setTimeout(() => {
+        setIsTypingDone(true);
+        setBackgroundState('afterTyping');
+
+        // Setting another timeout to handle the background transition after 3 seconds
+        const backgroundTimer = setTimeout(() => {
+            setBackgroundState('animate');
+        }, 1500);
+
+        return () => clearTimeout(backgroundTimer);
     }, totalTime);
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => clearTimeout(typingTimer);
+}, []);
 
   const fontSize = isTypingDone 
     ? 'initial' 
     : windowWidth <= 768 ? '1.5rem' : '3rem';
 
   return (
-    <div className={styles.landingPage}>
+    <motion.div
+      initial="initial"
+      animate={backgroundState}
+      variants={landingPageVariants}
+      className={styles.landingPage}
+    >
       <div className={styles.container}>
         <div className={styles.leftColumn}>
           <div className={styles.landingText2} style={{ fontSize }}>
@@ -131,7 +161,7 @@ function Landing() {
           </motion.div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

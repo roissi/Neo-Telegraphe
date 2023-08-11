@@ -6,6 +6,9 @@
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to top right, #088e99, #ffffff);
 }
 
 /* Conteneur interne avec colonnes */
