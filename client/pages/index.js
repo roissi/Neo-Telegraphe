@@ -7,7 +7,7 @@ function Landing() {
   const [isTypingDone, setIsTypingDone] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
 
-  const text1 = "Le point culminant de Paris, d’une altitude de 128,50 mètres, se situe au 40 rue de Télégraphe, juste à côté du cimetière de Belleville. Aujourd’hui, les hauts immeubles qui l’entourent empêchent toute échappée vers de lointains horizons.";
+  const text1 = "Le point culminant de Paris, d’une altitude de 128,50 mètres, se situe au 40 rue du Télégraphe, juste à côté du cimetière de Belleville. Aujourd’hui, les hauts immeubles qui l’entourent empêchent toute échappée vers de lointains horizons.";
   const text2 = "Du moins, c'est ce qu'on dit...";
   const animationDelay = 0.05;
   const EXTRA_DELAY = 2;
