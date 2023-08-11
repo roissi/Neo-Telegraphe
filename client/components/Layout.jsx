@@ -11,7 +11,7 @@ function Layout({ children }) {
   const [session, setSession] = useState(null);
   const [signupOpen, setSignupOpen] = useState(false);
   const router = useRouter();
-  const isOnHomePage = router.pathname === '/';
+  const isOnHomePage = router.pathname === '/home';
 
   useEffect(() => {
     setSession(supabase.auth.session);
@@ -41,10 +41,10 @@ function Layout({ children }) {
 
   <header className="header-container">
     <div className="logo-container">
-      {router.pathname === '/' ? (
+      {router.pathname === '/home' ? (
         <Image src="/img/logoNT_TEST.png" alt="Logo" width={400} height={400} />
       ) : (
-        <Link href="/" passHref>
+        <Link href="/home" passHref>
           <Image src="/img/logoNT_TEST.png" alt="Logo" width={400} height={400} />
         </Link>
       )}
@@ -53,7 +53,7 @@ function Layout({ children }) {
 
   <div className="btn-container">
   {!isOnHomePage && (
-    <Link href="/" passHref>
+    <Link href="/home" passHref>
       <div className="icon-container">
         <HomeIcon 
           size={28} 
