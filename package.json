@@ -1,0 +1,13 @@
+{
+    "name": "neo-telegraphe-root",
+    "version": "1.0.0",
+    "scripts": {
+      "install-deps": "cd client && npm install && cd ../server && npm install",
+      "build": "cd client && npm run build && cd ../server && npm run build",
+      "start": "cd server && node index.js",
+      "dev": "concurrently \"cd server && node index.js\" \"cd client && npm run dev\""
+    },
+    "devDependencies": {
+      "concurrently": "^7.0.0"
+    }
+  }
