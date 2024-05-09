@@ -7,6 +7,9 @@
     "start": "cd client && npm start",
     "dev": "cd client && npm run dev"
   },
+  "dependencies": {
+    "next": "13.4.10"
+  },
   "devDependencies": {
     "concurrently": "^7.0.0"
   }
