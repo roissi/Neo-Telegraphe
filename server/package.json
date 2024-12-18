@@ -20,6 +20,6 @@
   "homepage": "https://github.com/roissi/Neo-Telegraphe#readme",
   "dependencies": {
     "dotenv": "^16.3.1",
-    "express": "^4.19.2"
+    "express": "^4.21.2"
   }
 }
